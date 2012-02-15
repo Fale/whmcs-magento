@@ -5,6 +5,7 @@ class Whmcs
 	private $username;
 	private $password;
 	private $pf = Array();
+	private $query;
 
 	public function __construct( $user, $pass, $url = "http://dev.whmcs.snds.co/includes/api.php" )
 	{
@@ -25,19 +26,19 @@ class Whmcs
 	private function prepare( $array )
 	{
 		$this->pf = array_merge( $this->pf, $array );
-		$query_string = "";
+		$this->query = "";
 		foreach ( $this->pf as $k => $v )
-			$query_string .= "$k=" . urlencode( $v ) . "&";
+			$this->query .= "$k=" . urlencode( $v ) . "&";
 	}
 
 	private function send()
 	{
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->url);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $query_string);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $this->query);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		$jsondata = curl_exec($ch);
