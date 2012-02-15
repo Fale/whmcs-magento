@@ -1,6 +1,4 @@
 <?php
-
-$w = new Whmcs( "fale", "c00f9dbd" );
 class Whmcs 
 {
 	private $url;
@@ -16,6 +14,12 @@ class Whmcs
 		$this->pf["username"] = $this->username;
 		$this->pf["password"] = md5( $this->password );
 		$this->pf["responsetype"] = "json";
+	}
+
+	public function action( $array )
+	{
+		$this->prepare( $array );
+		return $this->send();
 	}
 
 	private function prepare( $array )
