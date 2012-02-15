@@ -26,7 +26,7 @@ class Whmcs
 	{
 		$this->pf = array_merge( $this->pf, $array );
 		$query_string = "";
-		foreach ( $postfields as $k => $v )
+		foreach ( $this->pf as $k => $v )
 			$query_string .= "$k=" . urlencode( $v ) . "&";
 	}
 
