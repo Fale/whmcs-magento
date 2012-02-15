@@ -1,4 +1,6 @@
 <?php
+require_once( "class/whmcs.php" );
+
 $pf = Array();
 $pf["action"] = "createinvoice";
 $pf["userid"] = "1";
