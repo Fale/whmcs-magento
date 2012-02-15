@@ -1,5 +1,5 @@
 <?php
-require_once( "class/whmcs.php" );
+require_once( "classes/whmcs.php" );
 $pf = Array();
 $pf["action"] = "getclients";
 
