@@ -1,5 +1,5 @@
 <?php
-require_once( "../settings/db.php" );
+require_once( "settings/db.php" );
 require_once( "db.php" );
 
 class Magento
@@ -17,10 +17,10 @@ class Magento
             $c = "row_total_incl_tax";
         else
             $c = "row_total";
-        $revs = $this->db->query( "SELECT $c FROM sales_flat_oder_item WHERE `created_at` BETWEEN #$from# AND #$to#";
+        $revs = $this->db->query( "SELECT `$c` FROM sales_flat_order_item WHERE `created_at` BETWEEN '$from' AND '$to';" );
         $r = 0;
         foreach( $revs as $rev )
-            $r = $r + $rev['sales_flat_order_item'];
+            $r = $r + $rev[$c];
         return $r;
     }
 }
